@@ -13,6 +13,14 @@ else
     echo "✗ CLAUDE.md not found in $SOURCE_DIR"
 fi
 
+# Copy settings.json
+if [ -f "$SOURCE_DIR/settings.json" ]; then
+    cp -f "$SOURCE_DIR/settings.json" "$DEST_DIR/"
+    echo "✓ Copied settings.json"
+else
+    echo "✗ settings.json not found in $SOURCE_DIR"
+fi
+
 # Copy mcp.json
 if [ -f "$SOURCE_DIR/mcp.json" ]; then
     cp -f "$SOURCE_DIR/mcp.json" "$DEST_DIR/"

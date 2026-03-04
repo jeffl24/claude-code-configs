@@ -32,13 +32,13 @@ else
     echo "✗ mcp.json not found in repo"
 fi
 
-# Copy skills/ directory
-if [ -d "$SOURCE_DIR/skills" ]; then
-    rm -rf "$DEST_DIR/skills"
-    cp -r "$SOURCE_DIR/skills" "$DEST_DIR/"
-    echo "✓ Restored skills/"
+# Copy commands/ directory
+if [ -d "$SOURCE_DIR/commands" ]; then
+    rm -rf "$DEST_DIR/commands"
+    cp -r "$SOURCE_DIR/commands" "$DEST_DIR/"
+    echo "✓ Restored commands/"
 else
-    echo "✗ skills/ not found in repo"
+    echo "✗ commands/ not found in repo"
 fi
 
 echo ""

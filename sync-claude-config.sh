@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Sync CLAUDE.md, mcp.json, and skills/ from ~/.claude to this directory
+# Sync CLAUDE.md, mcp.json, and commands/ from ~/.claude to this directory
 
 SOURCE_DIR="$HOME/.claude"
 DEST_DIR="$HOME/github-projects/claude-code-configs"
@@ -29,13 +29,13 @@ else
     echo "✗ mcp.json not found in $SOURCE_DIR"
 fi
 
-# Copy skills/ directory
-if [ -d "$SOURCE_DIR/skills" ]; then
-    rm -rf "$DEST_DIR/skills"
-    cp -r "$SOURCE_DIR/skills" "$DEST_DIR/"
-    echo "✓ Copied skills/"
+# Copy commands/ directory
+if [ -d "$SOURCE_DIR/commands" ]; then
+    rm -rf "$DEST_DIR/commands"
+    cp -r "$SOURCE_DIR/commands" "$DEST_DIR/"
+    echo "✓ Copied commands/"
 else
-    echo "✗ skills/ not found in $SOURCE_DIR"
+    echo "✗ commands/ not found in $SOURCE_DIR"
 fi
 
 echo "Done!"

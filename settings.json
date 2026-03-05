@@ -1,0 +1,53 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(go:*)",
+      "Write(*)",
+      "Bash(ls:*)",
+      "Bash(git:*)",
+      "Update(*:*)",
+      "Bash(mv:*)",
+      "Bash(echo:*)",
+      "Bash(sed:*)",
+      "Bash(source:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(pkill:*)",
+      "Bash(touch:*)",
+      "Bash(grep:*)",
+      "Bash(deadcode:*)",
+      "Bash(sqlite3:*)",
+      "Bash(curl:*)",
+      "Bash(rg:*)",
+      "Bash(chmod:*)",
+      "Bash(lsof:*)",
+      "Bash(make:*)",
+      "Bash(PORT=:*)",
+      "Bash(find:*)",
+      "Bash(docker:*)",
+      "Bash(poetry:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Update(*)",
+      "Read(//Users/jeff.lim/projects/vivid_cloud_agentic_colab/**)",
+      "Read(//tmp/**)",
+      "Read(//private/tmp/**)",
+      "Read(//Users/jeff.lim/.claude/**)",
+      "Read(//Users/jeff.lim/projects/synauta-ml-ds/**)"
+    ],
+    "deny": [],
+    "additionalDirectories": [
+      "/private/tmp",
+      "/Users/jeff.lim/.claude/plans"
+    ]
+  },
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); model_name=$(echo \"$input\" | jq -r '.model.display_name'); dir_name=$(basename \"$current_dir\"); if git -C \"$current_dir\" rev-parse --git-dir > /dev/null 2>&1; then branch=$(git -C \"$current_dir\" --no-optional-locks branch --show-current 2>/dev/null || echo \"detached\"); if ! git -C \"$current_dir\" --no-optional-locks diff-index --quiet HEAD -- 2>/dev/null; then dirty=\"✗\"; else dirty=\"\"; fi; git_info=$(printf \"\\033[1;34mgit:(\\033[0;31m%s\\033[1;34m) \\033[0;33m%s\" \"$branch\" \"$dirty\"); else git_info=\"\"; fi; printf \"\\033[1;32m➜\\033[0m  \\033[0;36m%s\\033[0m %s\\033[0m | %s\" \"$dir_name\" \"$git_info\" \"$model_name\""
+  },
+  "alwaysThinkingEnabled": true
+}

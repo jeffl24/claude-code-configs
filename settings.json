@@ -36,18 +36,29 @@
       "Read(//tmp/**)",
       "Read(//private/tmp/**)",
       "Read(//Users/jeff.lim/.claude/**)",
-      "Read(//Users/jeff.lim/projects/synauta-ml-ds/**)"
+      "Read(//Users/jeff.lim/projects/synauta-ml-ds/**)",
+      "Read(//Users/jeff.lim/**)",
+      "Bash(mv /Users/jeff.lim/.claude/commands/deep-explain.md /Users/jeff.lim/.claude/commands/codebase-deep-explain.md)",
+      "Bash(mv /Users/jeff.lim/.claude/commands/pair-build.md /Users/jeff.lim/.claude/commands/codebase-pair-build.md)",
+      "Read(//Users/jeff.lim/projects/synauta-plant-config-from-knowledge/**)",
+      "Bash(find /Users/jeff.lim/projects/vivid_prod_refactor -type f \\\\\\(-name *.tf -o -name *.json -o -name *.yml -o -name *.yaml -o -name *.py -o -name *.js -o -name *.ts -o -name *.tsx -o -name *.env* -o -name *Dockerfile* -o -name *docker* \\\\\\))",
+      "Bash(cp config/report/tag_mapping_config_cabot.json config/tag_mapping/cabot.json)",
+      "Bash(cp config/report/tag_mapping_config_dracut.json config/tag_mapping/dracut.json)",
+      "Bash(rm config/report/tag_mapping_config.json config/report/tag_mapping_config_cabot.json config/report/tag_mapping_config_dracut.json)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__query-docs"
     ],
     "deny": [],
     "additionalDirectories": [
       "/private/tmp",
-      "/Users/jeff.lim/.claude/plans"
+      "/Users/jeff.lim/.claude/plans",
+      "/Users/jeff.lim/.claude/commands"
     ]
   },
-  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); model_name=$(echo \"$input\" | jq -r '.model.display_name'); dir_name=$(basename \"$current_dir\"); if git -C \"$current_dir\" rev-parse --git-dir > /dev/null 2>&1; then branch=$(git -C \"$current_dir\" --no-optional-locks branch --show-current 2>/dev/null || echo \"detached\"); if ! git -C \"$current_dir\" --no-optional-locks diff-index --quiet HEAD -- 2>/dev/null; then dirty=\"✗\"; else dirty=\"\"; fi; git_info=$(printf \"\\033[1;34mgit:(\\033[0;31m%s\\033[1;34m) \\033[0;33m%s\" \"$branch\" \"$dirty\"); else git_info=\"\"; fi; printf \"\\033[1;32m➜\\033[0m  \\033[0;36m%s\\033[0m %s\\033[0m | %s\" \"$dir_name\" \"$git_info\" \"$model_name\""
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true
 }

@@ -41,5 +41,14 @@ else
     echo "✗ commands/ not found in repo"
 fi
 
+# Copy skills/ directory
+if [ -d "$SOURCE_DIR/skills" ]; then
+    rm -rf "$DEST_DIR/skills"
+    cp -r "$SOURCE_DIR/skills" "$DEST_DIR/"
+    echo "✓ Restored skills/"
+else
+    echo "✗ skills/ not found in repo"
+fi
+
 echo ""
 echo "Done! Restart Claude Code for changes to take effect."

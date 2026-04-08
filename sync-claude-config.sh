@@ -3,7 +3,7 @@
 # Sync CLAUDE.md, mcp.json, commands/, and skills/ from ~/.claude to this directory
 
 SOURCE_DIR="$HOME/.claude"
-DEST_DIR="$HOME/github-projects/claude-code-configs"
+DEST_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Copy CLAUDE.md
 if [ -f "$SOURCE_DIR/CLAUDE.md" ]; then

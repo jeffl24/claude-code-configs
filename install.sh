@@ -18,8 +18,8 @@ BACKUP_DIR="$CLAUDE_DIR/.backups/$TS"
 TRACKED=(
     "CLAUDE.md"
     "settings.json"
-    "mcp.json"
     "commands"
+    "skills"
     "agents"
     "rules"
     "statusline.sh"
@@ -61,4 +61,12 @@ if [ -d "$BACKUP_DIR" ]; then
     echo ""
     echo "Backups saved to: $BACKUP_DIR"
 fi
+
+# Register user-scope MCPs from mcps.json (if present and `claude` CLI exists).
+if [ -f "$REPO_DIR/mcps.json" ] && command -v claude >/dev/null 2>&1; then
+    echo ""
+    echo "Registering user-scope MCPs from mcps.json..."
+    "$REPO_DIR/sync.sh" mcps-install
+fi
+
 echo "Done. Restart Claude Code for changes to take effect."

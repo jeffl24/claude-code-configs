@@ -1,0 +1,23 @@
+{
+  "excel": {
+    "type": "stdio",
+    "command": "uvx",
+    "args": [
+      "excel-mcp-server",
+      "stdio"
+    ],
+    "env": {}
+  },
+  "context7": {
+    "type": "http",
+    "url": "https://mcp.context7.com/mcp"
+  },
+  "pdf-reader": {
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "@sylphx/pdf-reader-mcp"
+    ],
+    "env": {}
+  }
+}

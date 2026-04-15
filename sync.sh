@@ -161,6 +161,12 @@ cmd_mcps_install() {
         entry=$(jq --arg n "$name" '.[$n]' "$MCPS_FILE")
         type=$(echo "$entry" | jq -r '.type // "stdio"')
 
+        # Collect env flags (shared by stdio/http/sse).
+        local -a env_flags=()
+        while IFS=$'\t' read -r k v; do
+            [ -n "$k" ] && env_flags+=("-e" "$k=$v")
+        done < <(echo "$entry" | jq -r '(.env // {}) | to_entries[]? | "\(.key)\t\(.value)"')
+
         case "$type" in
             stdio)
                 local cmd
@@ -169,21 +175,31 @@ cmd_mcps_install() {
                 while IFS= read -r a; do
                     [ -n "$a" ] && args+=("$a")
                 done < <(echo "$entry" | jq -r '.args[]?')
+                # Use `--` separator so args starting with `-` (e.g. `-y` for npx)
+                # aren't consumed as flags by `claude mcp add`.
                 if [ ${#args[@]} -gt 0 ]; then
-                    claude mcp add "$name" "$cmd" "${args[@]}" -s user
+                    claude mcp add "$name" -s user "${env_flags[@]}" -- "$cmd" "${args[@]}"
                 else
-                    claude mcp add "$name" "$cmd" -s user
+                    claude mcp add "$name" -s user "${env_flags[@]}" -- "$cmd"
                 fi
                 ;;
             http)
                 local url
                 url=$(echo "$entry" | jq -r '.url')
-                claude mcp add --transport http "$name" "$url" -s user
+                local -a header_flags=()
+                while IFS=$'\t' read -r k v; do
+                    [ -n "$k" ] && header_flags+=("-H" "$k: $v")
+                done < <(echo "$entry" | jq -r '(.headers // {}) | to_entries[]? | "\(.key)\t\(.value)"')
+                claude mcp add --transport http "$name" "$url" -s user "${header_flags[@]}"
                 ;;
             sse)
                 local url
                 url=$(echo "$entry" | jq -r '.url')
-                claude mcp add --transport sse "$name" "$url" -s user
+                local -a header_flags=()
+                while IFS=$'\t' read -r k v; do
+                    [ -n "$k" ] && header_flags+=("-H" "$k: $v")
+                done < <(echo "$entry" | jq -r '(.headers // {}) | to_entries[]? | "\(.key)\t\(.value)"')
+                claude mcp add --transport sse "$name" "$url" -s user "${header_flags[@]}"
                 ;;
             *)
                 echo "✗ $name: unknown type '$type', skipping"

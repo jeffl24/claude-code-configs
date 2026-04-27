@@ -33,7 +33,24 @@
       "Read(//Users/jeff.lim/**)",
       "WebSearch",
       "WebFetch",
-      "mcp__*"
+      "mcp__*",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__query-docs",
+      "Bash(wc:*)",
+      "Bash(brew install:*)",
+      "WebFetch(domain:dspy.ai)",
+      "Bash(cd:*)",
+      "Bash(uv run:*)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//Users/jeff.lim/projects/vivid-original/api/**)",
+      "Bash(done)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:ghostty.org)",
+      "WebFetch(domain:manpages.opensuse.org)",
+      "WebFetch(domain:support.apple.com)",
+      "Bash(defaults read:*)",
+      "WebFetch(domain:fossies.org)"
     ],
     "deny": [
       "Bash(rm -rf /:*)",
@@ -55,6 +72,7 @@
       "Bash(git reset --hard:*)",
       "Bash(git clean -f:*)"
     ],
+    "defaultMode": "acceptEdits",
     "additionalDirectories": [
       "/private/tmp",
       "/Users/jeff.lim/.claude/plans",
@@ -65,8 +83,6 @@
     "type": "command",
     "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); model_name=$(echo \"$input\" | jq -r '.model.display_name'); dir_name=$(basename \"$current_dir\"); if git -C \"$current_dir\" rev-parse --git-dir > /dev/null 2>&1; then branch=$(git -C \"$current_dir\" --no-optional-locks branch --show-current 2>/dev/null || echo \"detached\"); if ! git -C \"$current_dir\" --no-optional-locks diff-index --quiet HEAD -- 2>/dev/null; then dirty=\"✗\"; else dirty=\"\"; fi; git_info=$(printf \"\\033[1;34mgit:(\\033[0;31m%s\\033[1;34m) \\033[0;33m%s\" \"$branch\" \"$dirty\"); else git_info=\"\"; fi; printf \"\\033[1;32m➜\\033[0m  \\033[0;36m%s\\033[0m %s\\033[0m | %s\" \"$dir_name\" \"$git_info\" \"$model_name\""
   },
-  "alwaysThinkingEnabled": true,
   "effortLevel": "high",
-  "skipDangerousModePermissionPrompt": true,
-  "model": "opus"
+  "skipDangerousModePermissionPrompt": true
 }

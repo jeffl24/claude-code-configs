@@ -1,0 +1,12 @@
+{
+    "mcpServers": {
+      "excel": {
+        "command": "uvx",
+        "args": ["excel-mcp-server", "stdio"]
+      },
+      "context7": {
+        "command": "npx",
+        "args": ["-y", "@upstash/context7-mcp"]
+      }
+    }
+  }

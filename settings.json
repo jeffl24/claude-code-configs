@@ -82,7 +82,8 @@
     "additionalDirectories": [
       "/private/tmp",
       "/Users/jeff.lim/.claude/plans",
-      "/Users/jeff.lim/.claude/commands"
+      "/Users/jeff.lim/.claude/commands",
+      "/Users/jeff.lim/.claude"
     ]
   },
   "statusLine": {

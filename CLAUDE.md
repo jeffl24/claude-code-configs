@@ -1,6 +1,10 @@
 - always format your response in markdown file format
 - Always use Context7 MCP when I need library/API documentation, code generation, setup or configuration steps without me having to explicitly ask.
 
+## Git Commits
+
+- **Never** add a `Co-Authored-By: Claude` line to commit messages.
+
 ## Python Environment
 
 - **Always** activate and use the local `.venv` virtual environment in the current working directory before running any Python commands.

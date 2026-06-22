@@ -56,7 +56,12 @@
       "Bash(xargs file -b)",
       "Bash(kubectl describe *)",
       "Bash(awk '{print $NF}')",
-      "Bash(xargs -I {} basename {})"
+      "Bash(xargs -I {} basename {})",
+      "Bash(unzip -p \"AI System Impact Assessment Orka.docx\" word/document.xml)",
+      "Bash(python3 -c \"import sys; import xml.etree.ElementTree as ET; tree = ET.parse\\(sys.stdin\\); root = tree.getroot\\(\\); ns = {'w': 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}; texts = [elem.text for elem in root.iter\\('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}t'\\) if elem.text]; print\\('\\\\n'.join\\(texts\\)\\)\")",
+      "Bash(.venv/bin/python -c \"import dotenv; print\\('dotenv OK', dotenv.__version__\\)\")",
+      "Bash(.venv/bin/python -c \"from dotenv import load_dotenv; print\\('load_dotenv import OK'\\)\")",
+      "Bash(bash demo.sh)"
     ],
     "deny": [
       "Bash(rm -rf /:*)",
@@ -86,14 +91,16 @@
       "/Users/jeff.lim/.claude"
     ]
   },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); model_name=$(echo \"$input\" | jq -r '.model.display_name'); dir_name=$(basename \"$current_dir\"); if git -C \"$current_dir\" rev-parse --git-dir > /dev/null 2>&1; then branch=$(git -C \"$current_dir\" --no-optional-locks branch --show-current 2>/dev/null || echo \"detached\"); if ! git -C \"$current_dir\" --no-optional-locks diff-index --quiet HEAD -- 2>/dev/null; then dirty=\"✗\"; else dirty=\"\"; fi; git_info=$(printf \"\\033[1;34mgit:(\\033[0;31m%s\\033[1;34m) \\033[0;33m%s\" \"$branch\" \"$dirty\"); else git_info=\"\"; fi; printf \"\\033[1;32m➜\\033[0m  \\033[0;36m%s\\033[0m %s\\033[0m | %s\" \"$dir_name\" \"$git_info\" \"$model_name\""
   },
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "skipDangerousModePermissionPrompt": true,
   "verbose": true,
   "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
   "mcpServers": {
     "pdf": {
       "command": "uvx",
